@@ -14,10 +14,14 @@ public class Player : MonoBehaviour
     public float groundCheckRadius = 0.2f;
     public LayerMask groundLayer;
 
+    private Animator animator;
+    private bool isWalking = false;
+
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        animator = transform.GetChild(0).GetComponent<Animator>();
     }
 
     void Update()
@@ -43,6 +47,12 @@ public class Player : MonoBehaviour
         {
             Jump();
         }
+
+        // Check if the player is moving
+        isWalking = (moveHorizontal != 0f || moveVertical != 0f);
+
+        // Update the Animator parameter to switch between idle and walk animations
+        animator.SetBool("IsWalking", isWalking);
     }
 
     private void Jump()
