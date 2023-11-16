@@ -17,7 +17,7 @@ public class PlayerCollect : MonoBehaviour
     {
         ScoreValueObj = GameObject.Find("ScoreValue");
         PlayerScript = GameObject.Find("Player").GetComponent<Player>();
-        WinscreenObj = GameObject.Find("WinScreen");
+        WinscreenObj = GameObject.Find("WinScreen").transform.GetChild(0).gameObject;
 
         WinscreenObj.SetActive(false);
     }
