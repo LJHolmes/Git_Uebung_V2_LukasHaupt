@@ -5,9 +5,15 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float speed = 5f;
-    //public float jumpForce = 10f;
+    public float jumpForce = 10f;
     private Rigidbody rb;
-    //private bool isGrounded;
+    private bool isGrounded;
+
+
+    public Transform groundCheck;
+    public float groundCheckRadius = 0.2f;
+    public LayerMask groundLayer;
+
 
     void Start()
     {
@@ -28,5 +34,19 @@ public class Player : MonoBehaviour
             Quaternion toRotation = Quaternion.LookRotation(movement, Vector3.up); // Reverse the movement vector
             transform.rotation = toRotation;
         }
+
+        // Check if the player is grounded
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer);
+
+        // Jump input
+        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
+        {
+            Jump();
+        }
+    }
+
+    private void Jump()
+    {
+        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     }
 }
