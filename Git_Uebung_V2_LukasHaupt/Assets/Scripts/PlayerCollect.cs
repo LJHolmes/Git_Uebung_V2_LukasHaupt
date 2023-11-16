@@ -8,14 +8,25 @@ public class PlayerCollect : MonoBehaviour
     public int ScoreValue;
 
     private GameObject ScoreValueObj;
+    private GameObject WinscreenObj;
+
     private Player PlayerScript;
 
-    public GameObject CoinPrefab;
 
     void Start()
     {
         ScoreValueObj = GameObject.Find("ScoreValue");
         PlayerScript = GameObject.Find("Player").GetComponent<Player>();
+        WinscreenObj = GameObject.Find("WinScreen");
+
+        WinscreenObj.SetActive(false);
+    }
+    private void Update()
+    {
+        if (ScoreValue >= 3)
+        {
+            WinscreenObj.SetActive(true);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
