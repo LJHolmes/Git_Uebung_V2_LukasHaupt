@@ -7,14 +7,14 @@ public class PlayerCollect : MonoBehaviour
 {
     public int ScoreValue;
 
-    //private GameObject ScoreValueObj;
+    private GameObject ScoreValueObj;
     private Player PlayerScript;
 
     public GameObject CoinPrefab;
 
     void Start()
     {
-        //ScoreValueObj = GameObject.Find("ScoreValue");
+        ScoreValueObj = GameObject.Find("ScoreValue");
         PlayerScript = GameObject.Find("Player").GetComponent<Player>();
     }
 
@@ -24,13 +24,13 @@ public class PlayerCollect : MonoBehaviour
         {
             Destroy(other.gameObject);
             ScoreValue += 1;
-            //ScoreValueObj.GetComponent<TMP_Text>().text = ScoreValue.ToString();
+            ScoreValueObj.GetComponent<TMP_Text>().text = ScoreValue.ToString();
         }
     }
 
     public void CountScorePlus()
     {
         ScoreValue += 1;
-        //ScoreValueObj.GetComponent<TMP_Text>().text = ScoreValue.ToString();
+        ScoreValueObj.GetComponent<TMP_Text>().text = ScoreValue.ToString();
     }
 }
